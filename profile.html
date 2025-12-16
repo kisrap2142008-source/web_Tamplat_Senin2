@@ -22,6 +22,50 @@
 <style>
  
 </style>
+<style>
+/* Bingkai video agar rata */
+.video-wrapper {
+  position: relative;
+  border: 3px solid #444;
+  border-radius: 23px;
+  padding: 6px;
+  background: #000;
+  overflow: hidden;
+}
+
+/* Video */
+.video-wrapper video {
+  width: 100%;
+  border-radius: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Zoom */
+.video-wrapper.zoomed video {
+  transform: scale(2);
+  z-index: 10;
+}
+
+/* Tombol kembali */
+.video-back {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.75);
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  display: none;
+  z-index: 20;
+}
+
+.video-wrapper.zoomed .video-back {
+  display: block;
+}
+</style>
 
 </head>
 
@@ -102,91 +146,132 @@
               </div>
             </div>
 
-            <!-- Video 1 -->
             <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="item">
-                <video
-                  src="clip-01.mp4"
-                  poster="CChen'nan.jpg"
-                  controls
-                  preload="metadata"
-                  style="width:100%; border-radius:23px;"
-                ></video>
-                <div class="down-content">
-                  <h4>Iblis yang tertidur</h4>
-                  <span><i class="fa fa-eye"></i> 250</span>
-                </div>
-              </div>
-            </div>
+  <div class="item video-wrapper"> 
+    <button class="video-back">Kembali</button>
+    <video
+      src="assets/clip-01.mp4"
+      poster="CChen'nan.jpg"
+      controls
+      preload="metadata"
+    ></video>
+    <div class="down-content">
+      <h4>Iblis yang tertidur</h4>
+      <span><i class="fa fa-eye"></i> 250</span>
+    </div>
+  </div>
+</div>
+
 
             <!-- Video 2 -->
+            
             <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="item">
-                <video
-                  src="Clip-2.mp4"
-                  poster="Tang'hao.jpg"
-                  controls
-                  preload="metadata"
-                  style="width:100%; border-radius:23px;"
-                ></video>
-                <div class="down-content">
-                  <h4>Berguncangnya dataran Douluo</h4>
-                  <span><i class="fa fa-eye"></i> 183</span>
-                </div>
-              </div>
-            </div>
+  <div class="item video-wrapper">
+    <button class="video-back">Kembali</button>
+    <video
+          src="assets/Clip-2.mp4"
+          poster="Tang'hao.jpg"
+          controls
+          preload="metadata"
+          ></video>
+    <div class="down-content">
+      <h4>bergetarnya benua dou'luo</h4>
+      <span><i class="fa fa-eye"></i> 250</span>
+    </div>
+
+  </div>
+</div>
 
             <!-- Video 3 -->
             <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="item">
-                <video
-                  src="assets/Cilip-4.mp4"
-                  poster="Luo feng.jpg"
-                  controls
-                  preload="metadata"
-                  style="width:100%; border-radius:23px;"
-                ></video>
-                <div class="down-content">
-                  <h4>Kemarahan Luo Feng</h4>
-                  <span><i class="fa fa-eye"></i> 141</span>
-                </div>
-              </div>
-            </div>
+  <div class="item video-wrapper">
+    <button class="video-back">Kembali</button>
+    <video
+          src="clip5.mp4"
+          poster="luo feng.jpg"
+          controls
+          preload="metadata"
+          ></video>
+    <div class="down-content">
+      <h4>bergetarnya benua dou'luo</h4>
+      <span><i class="fa fa-eye"></i> 250</span>
+    </div>
 
-            <!-- Video 4 -->
+  </div>
+</div>
+
             <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="item">
-                <video
-                  src="Clip-3.mp4"
-                  poster="xiao yan.jpg"
-                  controls
-                  preload="metadata"
-                  style="width:100%; border-radius:23px;"
-                ></video>
-                <div class="down-content">
-                  <h4>Kemarahan Xiao Yan</h4>
-                  <span><i class="fa fa-eye"></i> 91</span>
-                </div>
-              </div>
-            </div>
+  <div class="item video-wrapper">
+    <button class="video-back">Kembali</button>
+    <video
+          src="assets/Clip-3.mp4"
+          poster="xiao yan.jpg"
+          controls
+          preload="metadata"
+          ></video>
+    <div class="down-content">
+      <h4>retakan ruang </h4>
+      <span><i class="fa fa-eye"></i> 250</span>
+    </div>
 
-            <!-- Video 5 -->
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="item">
-                <video
-                  src="tiktokio.com1765770816_yJ7sToz5nhrSH2yQqyb4.mp4"
-                  poster="luo feng2.jpg"
-                  controls
-                  preload="metadata"
-                  style="width:100%; border-radius:23px;"
-                ></video>
-                <div class="down-content">
-                  <h4>Kemarahan Xiao Yan</h4>
-                  <span><i class="fa fa-eye"></i> 91</span>
-                </div>
-              </div>
-            </div>
+  </div>
+</div>
+<script>
+const wrappers = document.querySelectorAll(".video-wrapper");
 
+function resetVideo(wrapper) {
+  const video = wrapper.querySelector("video");
+  video.pause();
+  video.currentTime = 0;
+  video.load(); // kembali ke poster
+  wrapper.classList.remove("zoomed");
+}
+
+function resetAll() {
+  wrappers.forEach(w => resetVideo(w));
+}
+
+wrappers.forEach(wrapper => {
+  const video = wrapper.querySelector("video");
+  const backBtn = wrapper.querySelector(".video-back");
+
+  let clickCount = 0;
+  let clickTimer;
+
+  // KLIK 1x / 2x
+  video.addEventListener("click", () => {
+    clickCount++;
+
+    clickTimer = setTimeout(() => {
+      if (clickCount === 1) {
+        // Klik 1x → zoom
+        resetAll();
+        wrapper.classList.add("zoomed");
+      } else if (clickCount === 2) {
+        // Klik 2x → kembali normal
+        resetVideo(wrapper);
+      }
+      clickCount = 0;
+    }, 250);
+  });
+
+  // Tombol kembali
+  backBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetVideo(wrapper);
+  });
+
+  // Video selesai
+  video.addEventListener("ended", () => {
+    resetVideo(wrapper);
+  });
+});
+
+// Pindah tab
+window.addEventListener("blur", resetAll);
+</script>
+
+          
             <div class="col-lg-12">
               <div class="main-button">
                 <a href="#">Load More Clips</a>
@@ -221,6 +306,3 @@
 
 </body>
 </html>
-
-
-
